@@ -1,6 +1,5 @@
 
 // building map 
-
 export const dict: { [note: string]: number } = {
     "C" : 1, 
     "C#" : 2, 
@@ -31,4 +30,5 @@ export function move (note: string, halfSteps : number) {
         newNum = num + halfSteps - 12 
     } 
 
+    return dict[newNum]
 }
