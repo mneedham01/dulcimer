@@ -40,3 +40,37 @@ export function move (note: string, halfSteps : number) {
 
     return noteGetter(newNum)
 }
+
+export function halfStep (note: string){
+    // get the number value of the note 
+    const num = map.get(note)
+
+    // set up newNum 
+    let newNum : number 
+
+    if (num! + 1 > 12) {
+        newNum = num! + 1
+    } else {
+        //won't move more than an octave
+        newNum = num! -11
+    }
+
+    return noteGetter(newNum) 
+}
+
+export function wholeStep (note: string){
+    // get the number value of the note 
+    const num = map.get(note)
+
+    // set up newNum 
+    let newNum : number 
+
+    if (num! + 2 > 12) {
+        newNum = num! + 1
+    } else {
+        //won't move more than an octave
+        newNum = num! -10
+    }
+
+    return noteGetter(newNum) 
+}
