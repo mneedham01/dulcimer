@@ -78,3 +78,31 @@ function dulcimerNotes(note){
     list.push(move(note,21))
 }
 
+//build a major chord 
+export function major (note){
+
+    let list = []
+
+    const third = move(note, 4)
+    list.push(third)
+
+    const fifth = move(note, 7)
+    list.push(fifth)
+
+    return list
+}
+
+//build a minor chord
+export function minor (note) {
+
+    let list = []
+
+    const third = move(note, 3)
+    list.push(third)
+
+    const fifth = move (note, 7)
+    list.push(fifth)
+
+    return list
+}
+
