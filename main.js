@@ -111,21 +111,22 @@ function minor (note) {
 
 function main(string1, string2, string3){
     list1 = dulcimerNotes(string1)
-    console.log(list1)
     list2 = dulcimerNotes(string2)
-    console.log(list1)
     list3 = dulcimerNotes(string3)
-    console.log(list1)
 
     //loop through all notes
-    for (const key in map.keys){
+    for (const [key] of map){
+        console.log(key)
         // major chord 
-        const major = major(key)
+        const majorChord = major(key)
+        console.log(majorChord)
 
         //loop through major chord 
-        for (note in major){
+        for (i in majorChord){
+            note = majorChord[i]
             console.log(note)
         }
+        console.log("\n")
     }
 }
 
