@@ -1,4 +1,3 @@
-export {map, noteGetter, move, dulcimerNotes, major, minor}
 
 // building map 
 const map = new Map(); 
@@ -33,11 +32,13 @@ function move (note, halfSteps) {
     // set up newNum 
     let newNum 
 
-    if (num + halfSteps < 12) {
+    if (num + halfSteps <= 12) {
         newNum = num + halfSteps
     } else {
-        //won't move more than an octave
-        newNum = num + halfSteps - 12 
+        while(num + halfSteps -12 > 12 ){
+            halfSteps = halfSteps -12 
+        }   
+        newNum = num + halfSteps - 12
     }
 
     return noteGetter(newNum)
@@ -76,12 +77,14 @@ function dulcimerNotes(note){
     list.push(move(note,19))
     // W (12)
     list.push(move(note,21))
+
+    return list
 }
 
 //build a major chord 
 function major (note){
 
-    let list = []
+    let list = [note]
 
     const third = move(note, 4)
     list.push(third)
@@ -92,10 +95,10 @@ function major (note){
     return list
 }
 
-//build a minor chord
+// build a minor chord
 function minor (note) {
 
-    let list = []
+    let list = [note]
 
     const third = move(note, 3)
     list.push(third)
@@ -105,4 +108,55 @@ function minor (note) {
 
     return list
 }
+
+function main(string1, string2, string3){
+    list1 = dulcimerNotes(string1)
+    console.log(list1)
+    list2 = dulcimerNotes(string2)
+    console.log(list1)
+    list3 = dulcimerNotes(string3)
+    console.log(list1)
+
+    //loop through all notes
+    for (const key in map.keys){
+        // major chord 
+        const major = major(key)
+
+        //loop through major chord 
+        for (note in major){
+            console.log(note)
+        }
+    }
+}
+
+main("D", "A", "A")
+// note = "A"
+// console.log(dulcimerNotes("A"))
+// console.log(note)
+//     // W (1)
+//     console.log(move(note,2))
+//     //W (2)
+//     console.log(move(note,4))
+//     //H (3)
+//     console.log(move(note,5))
+//     //W (4)
+//     console.log(move(note,7))
+//     //W (5)
+//     console.log(move(note,9))
+//     //W (6)
+//     console.log(move(note,10))
+//     //(6.5)
+//     console.log(move(note,11))
+//     // W (7)
+//     console.log(move(note,12))
+//     // W (8)
+//     console.log(move(note,14))
+//     // W (9)
+//     console.log(move(note,16))
+//     // H (10)
+//     console.log(move(note,17))
+//     // W (11)
+//     console.log(move(note,19))
+//     // W (12)
+//     console.log(move(note,21))
 
