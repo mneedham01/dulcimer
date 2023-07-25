@@ -1,27 +1,108 @@
-import { move } from "./halfStepConverter"
-// // TypeScript has a singleton scanner
-// const scanner = ts.createScanner(ts.ScriptTarget.Latest, /*skipTrivia*/ true);
+export {map, noteGetter, move, dulcimerNotes, major, minor}
 
-// // That is initialized using a function `initializeState` similar to
-// function initializeState(text: string) {
-//     scanner.setText(text);
-//     scanner.setOnError((message: ts.DiagnosticMessage, length: number) => {
-//         console.error(message);
-//     });
-//     scanner.setScriptTarget(ts.ScriptTarget.ES5);
-//     scanner.setLanguageVariant(ts.LanguageVariant.Standard);
-// }
+// building map 
+const map = new Map(); 
 
-// // Sample usage
-// initializeState(`
-// var foo = 123;
-// `.trim());
+map.set("C", 1);
+map.set("C#", 2);
+map.set("C#", 2);
+map.set("D", 3);
+map.set("D#", 4);
+map.set("E", 5);
+map.set("F", 6);
+map.set("F#", 7);
+map.set("G", 8);
+map.set("G#", 9);
+map.set("A", 10);
+map.set("A#", 11);
+map.set("B", 12);
 
-// // Start the scanning
-// var token = scanner.scan();
-// while (token != ts.SyntaxKind.EndOfFileToken) {
-//     console.log(ts.formatSyntaxKind(token));
-//     token = scanner.scan();
-// }
-console.log('move("C",4"): ')
-console.log(move("C",4))
+function noteGetter(number) {
+    for (const [key, value] of map){
+        if (value == number) {
+            return key
+        }
+    }
+}
+
+function move (note, halfSteps) {
+
+    // get the number value of the note 
+    const num = map.get(note)
+
+    // set up newNum 
+    let newNum 
+
+    if (num + halfSteps < 12) {
+        newNum = num + halfSteps
+    } else {
+        //won't move more than an octave
+        newNum = num + halfSteps - 12 
+    }
+
+    return noteGetter(newNum)
+}
+
+function dulcimerNotes(note){
+
+    let list = []
+
+    // W-W-H-W-W-H-W
+    // tonic (0)
+    list.push(note)
+    // W (1)
+    list.push(move(note,2))
+    //W (2)
+    list.push(move(note,4))
+    //H (3)
+    list.push(move(note,5))
+    //W (4)
+    list.push(move(note,7))
+    //W (5)
+    list.push(move(note,9))
+    //W (6)
+    list.push(move(note,10))
+    //(6.5)
+    list.push(move(note,11))
+    // W (7)
+    list.push(move(note,12))
+    // W (8)
+    list.push(move(note,14))
+    // W (9)
+    list.push(move(note,16))
+    // H (10)
+    list.push(move(note,17))
+    // W (11)
+    list.push(move(note,19))
+    // W (12)
+    list.push(move(note,21))
+}
+
+//build a major chord 
+function major (note){
+
+    let list = []
+
+    const third = move(note, 4)
+    list.push(third)
+
+    const fifth = move(note, 7)
+    list.push(fifth)
+
+    return list
+}
+
+//build a minor chord
+function minor (note) {
+
+    let list = []
+
+    const third = move(note, 3)
+    list.push(third)
+
+    const fifth = move (note, 7)
+    list.push(fifth)
+
+    return list
+}
+
