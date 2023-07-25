@@ -109,6 +109,14 @@ function minor (note) {
     return list
 }
 
+function nextIndex(i) {
+    if (i ==2){
+        return 0 
+    } else{
+        return i + 1
+    }
+}
+
 function main(string1, string2, string3){
     list1 = dulcimerNotes(string1)
     list2 = dulcimerNotes(string2)
@@ -116,48 +124,24 @@ function main(string1, string2, string3){
 
     //loop through all notes
     for (const [key] of map){
-        console.log(key)
+
         // major chord 
         const majorChord = major(key)
-        console.log(majorChord)
 
-        //loop through major chord 
+        // loop through major chord 
         for (i in majorChord){
+
             note = majorChord[i]
-            console.log(note)
+
+            // check whether note is available in bass string 
+            if (list1.includes(note)) {
+                // if the bass string contains the note, then check if the middle string contains the next note 
+
+            }
         }
-        console.log("\n")
     }
 }
 
 main("D", "A", "A")
-// note = "A"
-// console.log(dulcimerNotes("A"))
-// console.log(note)
-//     // W (1)
-//     console.log(move(note,2))
-//     //W (2)
-//     console.log(move(note,4))
-//     //H (3)
-//     console.log(move(note,5))
-//     //W (4)
-//     console.log(move(note,7))
-//     //W (5)
-//     console.log(move(note,9))
-//     //W (6)
-//     console.log(move(note,10))
-//     //(6.5)
-//     console.log(move(note,11))
-//     // W (7)
-//     console.log(move(note,12))
-//     // W (8)
-//     console.log(move(note,14))
-//     // W (9)
-//     console.log(move(note,16))
-//     // H (10)
-//     console.log(move(note,17))
-//     // W (11)
-//     console.log(move(note,19))
-//     // W (12)
-//     console.log(move(note,21))
+
 
