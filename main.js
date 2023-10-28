@@ -89,7 +89,7 @@ function minor (note) {
 }
 
 function nextIndex(i) {
-    if (parseInt(i) == 12){
+    if (parseInt(i) == 2){
         return 0
     } else {
         return parseInt(i) + 1
@@ -130,10 +130,13 @@ function main(string1, string2, string3){
         for (i in majorChord){
 
             note = majorChord[i]
+            console.log("note = " + note)
 
             const nextNote = majorChord[nextIndex(i)]
+            console.log("next note = "+ nextNote)
 
             const nextNext = majorChord[nextIndex(nextIndex(i))]
+            console.log("nextNext = "+ nextNext)
 
             // allowed to do just tonic and fifth
             if (i==0){
