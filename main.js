@@ -89,7 +89,7 @@ function minor (note) {
 }
 
 function nextIndex(i) {
-    if (parseInt(i) == 2){
+    if (parseInt(i) == 12){
         return 0
     } else {
         return parseInt(i) + 1
